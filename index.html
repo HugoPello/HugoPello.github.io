@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo Pello · Desarrollador de software e IA</title>
+<link rel="alternate" hreflang="es" href="https://hugopello.github.io/">
+<link rel="alternate" hreflang="en" href="https://hugopello.github.io/en/">
+<meta name="description" content="Portfolio de Hugo Pello, estudiante de DAM en U-Tad y anotador de datos para IA en Milestone Systems.">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --ink: #16181d;
+    --muted: #5b6070;
+    --line: #e2ded4;
+    --accent: #2f5d50;
+    --accent-soft: #e3ece8;
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121417;
+      --surface: #1a1d22;
+      --ink: #ecebe6;
+      --muted: #a2a7b3;
+      --line: #2a2e35;
+      --accent: #7fbfa8;
+      --accent-soft: #1f2d29;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+  .logo { font-family: var(--mono); font-weight: 600; text-decoration: none; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 24px; font-size: 15px; }
+  nav ul a { text-decoration: none; color: var(--muted); }
+  nav ul a:hover { color: var(--ink); }
+
+  .lang { font-family: var(--mono); font-size: 13px; display: flex; gap: 4px; margin-left: 24px; }
+  .lang a { text-decoration: none; color: var(--muted); padding: 2px 6px; border-radius: 6px; }
+  .lang a.on { color: var(--ink); background: var(--accent-soft); }
+  .navr { display: flex; align-items: center; }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 6px 12px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  h1 { font-size: clamp(40px, 7vw, 68px); line-height: 1.05; letter-spacing: -0.035em; font-weight: 700; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { font-size: 20px; color: var(--muted); max-width: 640px; margin-top: 24px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px;
+    padding: 12px 20px; border-radius: 10px; border: 1px solid var(--ink);
+    transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+
+  /* Sections */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .section-head .num { font-family: var(--mono); color: var(--accent); font-size: 14px; }
+  h2 { font-size: 30px; letter-spacing: -0.02em; }
+
+  /* Projects */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; display: flex; flex-direction: column; gap: 12px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .card.featured { grid-column: 1 / -1; background: var(--accent-soft); border-color: transparent; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .status { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .status.live { color: var(--accent); }
+  h3 { font-size: 20px; letter-spacing: -0.01em; }
+  .card p { color: var(--muted); font-size: 15.5px; }
+  .card.featured p { color: var(--ink); max-width: 720px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .stack span {
+    font-family: var(--mono); font-size: 12px;
+    border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px;
+  }
+  .card.featured .stack span { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .card a.link { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .card a.link:hover { text-decoration: underline; }
+
+  /* Experience */
+  .timeline { display: grid; gap: 0; }
+  .job { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px dashed var(--line); }
+  .job:last-child { border-bottom: none; }
+  .job .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 4px; }
+  .job h3 { font-size: 18px; }
+  .job .role { color: var(--accent); font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .job p { color: var(--muted); font-size: 15.5px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }
+  .skills h4 { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; }
+  .skills ul { list-style: none; display: grid; gap: 4px; }
+
+  /* Contact */
+  .contact { text-align: left; }
+  .contact p { color: var(--muted); max-width: 560px; margin-bottom: 28px; font-size: 18px; }
+  footer { padding: 32px 0 48px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .lang { margin-left: 0; }
+    .hero { padding: 64px 0 48px; }
+    .job { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">hugo<span>.</span>pello</a>
+    <div class="navr">
+    <ul>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="lang"><a class="on" href="./">ES</a><a href="en/">EN</a></div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="tag">Disponible para prácticas · febrero 2027</div>
+    <h1>Desarrollo software<br>y trabajo con <em>IA</em>.</h1>
+    <p class="lead">Soy Hugo, estudiante de Desarrollo de Aplicaciones Multiplataforma en U-Tad (Madrid). Trabajo como anotador de datos para el entrenamiento de un modelo de visión y lenguaje en Milestone Systems y construyo aplicaciones con Java, Python, Flutter y SQL.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://drive.google.com/file/d/1THvkxvMZsKwayrNP0KJxZOb8zX_79FtJ/view" target="_blank" rel="noopener">Ver CV (PDF)</a>
+      <a class="btn" href="https://github.com/HugoPello" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/hugopello/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="proyectos">
+  <div class="wrap">
+    <div class="section-head"><span class="num">01</span><h2>Proyectos</h2></div>
+    <div class="grid">
+
+      <article class="card featured">
+        <div class="card-top">
+          <h3>App de gastos compartidos con IA · Proyecto de fin de ciclo</h3>
+          <span class="status live">● en desarrollo · entrega jun 2027</span>
+        </div>
+        <p>Un modelo de visión-lenguaje extrae los datos de los tickets, los amigos reclaman sus platos en una «mesa virtual» y las deudas se liquidan como un grafo para minimizar el número de transferencias.</p>
+        <div class="stack"><span>Flutter</span><span>FastAPI</span><span>PostgreSQL</span><span>Gemini Vision</span><span>Docker</span></div>
+        <a class="link" href="mailto:hugopello@gmail.com?subject=Acceso%20al%20repositorio%20del%20TFC">Repositorio privado · acceso bajo petición →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>notes-rag</h3><span class="status">terminado</span></div>
+        <p>Chatea con tus apuntes. App RAG que responde solo con tus PDFs, cita documento y página, y dice «no lo sé» cuando los apuntes no cubren la pregunta.</p>
+        <div class="stack"><span>Python</span><span>FastAPI</span><span>ChromaDB</span><span>Gemini</span><span>Docker</span><span>GitHub Actions</span></div>
+        <a class="link" href="https://github.com/HugoPello/notes-rag" target="_blank" rel="noopener">Ver repositorio →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>agent-monitor</h3><span class="status">terminado</span></div>
+        <p>Panel en vivo para agentes de Claude Code. Muestra qué hace cada sesión, los subagentes en paralelo, los fallos y cuándo te está esperando.</p>
+        <div class="stack"><span>FastAPI</span><span>Claude Code hooks</span><span>SQLite</span><span>SSE</span><span>HTML/JS</span><span>Docker</span><span>GitHub Actions</span></div>
+        <a class="link" href="https://github.com/HugoPello/agent-monitor" target="_blank" rel="noopener">Ver repositorio →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>smart-clock</h3><span class="status">terminado</span></div>
+        <p>Despertador Android que consulta el tráfico antes de sonar y adelanta o retrasa la alarma según el tiempo real de trayecto, con límites. Sin red, mantiene la hora original.</p>
+        <div class="stack"><span>Kotlin</span><span>Jetpack Compose</span><span>Room</span><span>WorkManager</span><span>AlarmManager</span><span>MVVM</span><span>TomTom API</span><span>GitHub Actions</span></div>
+        <a class="link" href="https://github.com/HugoPello/smart-clock" target="_blank" rel="noopener">Ver repositorio →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>Tracker de entrenos</h3><span class="status">próximamente</span></div>
+        <p>App Android nativa para registrar y seguir entrenamientos.</p>
+        <div class="stack"><span>Kotlin</span><span>Jetpack Compose</span><span>Room</span><span>MVVM</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>Radio Digital Universitaria</h3><span class="status">mayo 2026</span></div>
+        <p>Plataforma web full stack desarrollada en equipo durante las prácticas universitarias. Me encargué de la API RESTful en Python y de la interfaz web, con metodología ágil.</p>
+        <div class="stack"><span>Python</span><span>REST API</span><span>JavaScript</span><span>HTML/CSS</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><h3>App de seguimiento deportivo</h3><span class="status">mayo 2026</span></div>
+        <p>Aplicación con persistencia en base de datos SQL mediante JDBC, gestión de usuarios y autenticación en dos pasos (2FA) por email.</p>
+        <div class="stack"><span>Java</span><span>SQL</span><span>JDBC</span><span>2FA</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="wrap">
+    <div class="section-head"><span class="num">02</span><h2>Experiencia</h2></div>
+    <div class="timeline">
+      <div class="job">
+        <div class="when">oct 2025 — hoy</div>
+        <div>
+          <h3>Milestone Systems</h3>
+          <div class="role">Anotador de datos para IA · ~2 h/día, horario flexible</div>
+          <p>Creación de una librería de datos para entrenar un modelo VLM (Vision-Language Model). Anotación y estructuración de datos visuales complejos con flujos de validación de calidad.</p>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">dic 2024 — abr 2026</div>
+        <div>
+          <h3>DataAnnotationTech</h3>
+          <div class="role">Anotador de datos para IA · Freelance</div>
+          <p>Diseño de prompts complejos y evaluación de respuestas de modelos de lenguaje (LLM), detectando sesgos, errores e incoherencias.</p>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">sep 2025 — may 2027</div>
+        <div>
+          <h3>U-Tad · Universidad de Tecnología y Arte Digital</h3>
+          <div class="role">Técnico Superior en Desarrollo de Aplicaciones Multiplataforma</div>
+          <p>Madrid, España.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="section-head"><span class="num">03</span><h2>Stack</h2></div>
+    <div class="skills">
+      <div><h4>Lenguajes</h4><ul><li>Java</li><li>Python</li><li>Kotlin</li><li>Dart</li><li>SQL</li><li>JavaScript</li></ul></div>
+      <div><h4>Frameworks y datos</h4><ul><li>Flutter</li><li>FastAPI</li><li>PostgreSQL · MariaDB</li><li>MongoDB</li></ul></div>
+      <div><h4>Herramientas</h4><ul><li>Git · GitHub</li><li>Docker</li><li>AWS</li><li>Claude Code y agentes de IA</li></ul></div>
+      <div><h4>Idiomas</h4><ul><li>Español · nativo</li><li>Inglés · C1 Advanced (Cambridge)</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <div class="section-head"><span class="num">04</span><h2>Contacto</h2></div>
+    <p>Busco prácticas a partir de febrero de 2027 en un equipo de software o de IA, con disponibilidad completa. Si crees que puedo encajar, escríbeme.</p>
+    <div class="actions" style="margin-top:0">
+      <a class="btn primary" href="mailto:hugopello@gmail.com">hugopello@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/hugopello/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/HugoPello" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Hugo Pello · Hecho a mano y publicado con GitHub Pages</div>
+</footer>
+
+</body>
+</html>
