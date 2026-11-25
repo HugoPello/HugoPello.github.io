@@ -57,9 +57,17 @@
   nav ul a { text-decoration: none; color: var(--muted); }
   nav ul a:hover { color: var(--ink); }
 
-  .lang { font-family: var(--mono); font-size: 13px; display: flex; gap: 4px; margin-left: 24px; }
-  .lang a { text-decoration: none; color: var(--muted); padding: 2px 6px; border-radius: 6px; }
-  .lang a.on { color: var(--ink); background: var(--accent-soft); }
+  .lang {
+    display: flex; align-items: center; gap: 2px; margin-left: 28px;
+    border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px;
+    font-size: 14px; font-weight: 700; letter-spacing: .03em;
+  }
+  .lang svg { width: 16px; height: 16px; margin: 0 4px 0 6px; flex-shrink: 0; }
+  .lang a { text-decoration: none; color: var(--muted); padding: 5px 12px; border-radius: 999px; transition: background .15s, color .15s; }
+  .lang a:hover { color: var(--ink); background: var(--accent-soft); }
+  .lang a.on { color: var(--bg); background: var(--ink); }
+  .alt-lang { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 15px; font-weight: 600; color: var(--accent); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 1px; }
+  .alt-lang:hover { opacity: .8; }
   .navr { display: flex; align-items: center; }
 
   /* Hero */
@@ -152,7 +160,7 @@
       <li><a href="#stack">Stack</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <div class="lang"><a class="on" href="./">ES</a><a href="en/">EN</a></div>
+    <div class="lang" role="navigation" aria-label="Idioma / Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><a class="on" href="./">ES</a><a href="en/">EN</a></div>
     </div>
   </div>
 </nav>
@@ -167,6 +175,7 @@
       <a class="btn" href="https://github.com/HugoPello" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/hugopello/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
+    <a class="alt-lang" href="en/" hreflang="en">🇬🇧 Also available in English →</a>
   </div>
 </header>
 
